@@ -66,7 +66,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function AppHeader() {
     const {data: session} = useSession();
-    console.log(">>>check session: ", session)
+    // console.log(">>>check session: ", session)
     
     const router = useRouter();
 
@@ -114,7 +114,7 @@ export default function AppHeader() {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
             <MenuItem>
-                <Link href={"/profile"} style={{
+                <Link href={`/profile/${session?.user._id}`} style={{
                     color: "unset",
                     textDecoration: "unset"
                 }}>
@@ -232,15 +232,14 @@ export default function AppHeader() {
                                 <>
                             <Link href={"/playlist"}>Playlists</Link>
                             <Link href={"/like"}>Likes</Link>
-                            <span>Upload</span>
+                            <Link href={"/track/upload"}>Upload</Link>
                             <Avatar
                                 onClick={handleProfileMenuOpen}
                             >ER</Avatar>
                             </>
                             :
                             <>
-                            <Link href={"api/auth/signin"}
-                                  onClick={() => signIn()}  
+                            <Link href={"auth/signin"}
                                 >Login</Link>
                             </>
                             }           
